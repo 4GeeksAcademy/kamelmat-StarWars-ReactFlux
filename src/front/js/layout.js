@@ -12,6 +12,7 @@ import { Planets } from "./pages/Planets.jsx";
 import { Card } from "./pages/Card.jsx";
 import { CardPPL } from "./pages/CardPPL.jsx";
 import { Starships} from "./pages/Starships.jsx"
+import { CardSTS } from "./pages/CardSTS.jsx";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -39,6 +40,7 @@ const Layout = () => {
                         <Route path="/cardppl" element={<CardPPL />} />
                         <Route path="/characters" element={<Characters />} />
                         <Route path="/starships" element={<Starships />} />
+                        <Route path="/cardsts" element={<CardSTS />} />
                         <Route element={<h1>Not found!</h1>} path="*" />
                     </Routes>
                     <Footer />

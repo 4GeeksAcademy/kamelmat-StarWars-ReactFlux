@@ -11,7 +11,8 @@ export const Card = () => {
         <div className="container text-danger">
             <div className="row align-items-center">
                 <div className="col-md-3">
-                    <img src={selectedPlanet.imageUrl} alt={selectedPlanet.imageUrl} className="img-fluid" />
+                    <img src={selectedPlanet.imageUrl} alt={selectedPlanet.imageUrl} 
+                    onError={(e) => { e.target.src = 'https://starwars-visualguide.com/assets/img/placeholder.jpg'; }} className="img-fluid" />
                 </div>
                 <div className="col-md-9">
                     <h1 className="text-danger-light">{selectedPlanet.name}</h1>
