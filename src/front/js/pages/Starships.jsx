@@ -15,7 +15,10 @@ const handleLearnMore = (starship, imageUrl) => {
                 {store.starships.map((starship, index) => (
                     <div key={starship.name} className="col-lg-3 col-md-4 col-sm-6 mb-4">
                         <div className="card bg-dark text-light space">
-                            <img src={`https://starwars-visualguide.com/assets/img/starships/${index + 1}.jpg`} className="card-img-top image-fluid" alt="..."></img>
+                            <img src={`https://starwars-visualguide.com/assets/img/starships/${starship.uid}.jpg`}
+                                onError={(e) => { e.target.src = 'https://starwars-visualguide.com/assets/img/placeholder.jpg'; }}
+                                className="card-img-top image-fluid"
+                                alt="..."></img>
                             <div className="card-body">
                                 <h5 className="card-title fs-2">{starship.name}</h5>
                                 <div className="container d-flex justify-content-between">

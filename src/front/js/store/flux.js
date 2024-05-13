@@ -86,7 +86,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log('vehicles: ', data);
 				setStore({starships: data.results})
 			},
-			settingStarship: (starship) => {setStore({currentVehicle: starship})},
+			settingStarship: (starship) => {setStore({currentStarship: starship})},
 		}
 	};
 };
