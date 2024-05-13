@@ -2,18 +2,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			persons: {},
+			planets: [],
+			planet: '',
+			person: '',
+			staship: '',
+			currentPlanet: null,
+			currentPerson: '',
+			currentStarship: null,
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -23,9 +19,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getMessage: async () => {
 				try{
-					// fetching data from the backend
+					// fetching data from the backend					
 					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
-					const data = await resp.json()
+					const data = await resp.text()
 					setStore({ message: data.message })
 					// don't forget to return something, that is how the async resolves
 					return data;
@@ -46,7 +42,51 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
-			}
+			},
+			getPlanets: async () => {
+				const response = await fetch('https://swapi.dev/api/planets')
+
+				console.log(response);
+				if (!response.ok) {
+
+					console.log('Error ');
+					return;
+				};
+				const data = await response.json()
+				console.log('Planets: ', data);
+				setStore({planets: data});
+			},
+			settingPlanet: (planet) => {setStore({currentPlanet: planet })},
+
+			getPersons: async () => {
+					
+				const response = await fetch('https://swapi.dev/api/people')
+				console.log(response);
+				if (!response.ok) {
+		
+					console.log('Error ', response.status, response.statusText);
+					return;
+				};
+				const data = await response.json()
+				console.log('Persons: ', data);
+				setStore({persons: data.results})
+		
+			},
+			settingPerson: (person) => {setStore({currentPerson: person})},
+
+			getStarships: async () => {
+				const response = await fetch('https://www.swapi.tech/api/starships')
+				console.log(response);
+				if (!response.ok) {
+		
+					console.log('Error ', response.status, response.statusText);
+					return;
+				};
+				const data = await response.json()
+				console.log('vehicles: ', data);
+				setStore({starships: data.results})
+			},
+			settingStarship: (starship) => {setStore({currentVehicle: starship})},
 		}
 	};
 };

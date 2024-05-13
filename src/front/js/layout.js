@@ -3,9 +3,15 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 
-import { Home } from "./pages/home";
+
+import { Home } from "./pages/home.js";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
+import { Characters } from "./pages/Characters.jsx"
+import { Planets } from "./pages/Planets.jsx";
+import { Card } from "./pages/Card.jsx";
+import { CardPPL } from "./pages/CardPPL.jsx";
+import { Starships} from "./pages/Starships.jsx"
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -17,7 +23,7 @@ const Layout = () => {
     // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
     const basename = process.env.BASENAME || "";
 
-    if(!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL/ >;
+    if (!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL />;
 
     return (
         <div>
@@ -25,10 +31,15 @@ const Layout = () => {
                 <ScrollToTop>
                     <Navbar />
                     <Routes>
-                        <Route element={<Home />} path="/" />
-                        <Route element={<Demo />} path="/demo" />
-                        <Route element={<Single />} path="/single/:theid" />
-                        <Route element={<h1>Not found!</h1>} />
+                        <Route path="/" element={<Home />} />
+                        <Route path="/demo" element={<Demo />} />
+                        <Route path="/planets" element={<Planets />} />
+                        <Route path="/single/:theid" element={<Single />} />
+                        <Route path="/card" element={<Card />} />
+                        <Route path="/cardppl" element={<CardPPL />} />
+                        <Route path="/characters" element={<Characters />} />
+                        <Route path="/starships" element={<Starships />} />
+                        <Route element={<h1>Not found!</h1>} path="*" />
                     </Routes>
                     <Footer />
                 </ScrollToTop>
