@@ -1,0 +1,20 @@
+.film-list,
+.second-list {
+    list-style: none;
+    padding: 0;
+}
+
+.film-list li,
+.second-list li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.film-list img,
+.second-list img {
+    width: 100px; /* Ancho del thumbnail */
+    height: auto;
+    border: 1px solid #ccc; /* Borde del thumbnail */
+    border-radius: 5px; /* Bordes redondeados del thumbnail */
+    margin-bottom: 10px;
+}

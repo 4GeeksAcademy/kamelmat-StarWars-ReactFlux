@@ -10,6 +10,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			currentPlanet: null,
 			currentPerson: '',
 			currentStarship: null,
+			favorites: [],
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -18,14 +19,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			getMessage: async () => {
-				try{
+				try {
 					// fetching data from the backend					
 					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
 					const data = await resp.text()
 					setStore({ message: data.message })
 					// don't forget to return something, that is how the async resolves
 					return data;
-				}catch(error){
+				} catch (error) {
 					console.log("Error loading message from backend", error)
 				}
 			},
@@ -54,39 +55,47 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 				const data = await response.json()
 				console.log('Planets: ', data);
-				setStore({planets: data});
+				setStore({ planets: data });
+				
 			},
-			settingPlanet: (planet) => {setStore({currentPlanet: planet })},
+			settingPlanet: (planet) => { setStore({ currentPlanet: planet }) },
 
 			getPersons: async () => {
-					
+
 				const response = await fetch('https://swapi.dev/api/people')
 				console.log(response);
 				if (!response.ok) {
-		
+
 					console.log('Error ', response.status, response.statusText);
 					return;
 				};
 				const data = await response.json()
 				console.log('Persons: ', data);
-				setStore({persons: data.results})
-		
+				setStore({ persons: data.results })
+
 			},
-			settingPerson: (person) => {setStore({currentPerson: person})},
+			settingPerson: (person) => { setStore({ currentPerson: person }) },
 
 			getStarships: async () => {
 				const response = await fetch('https://www.swapi.tech/api/starships')
 				console.log(response);
 				if (!response.ok) {
-		
+
 					console.log('Error ', response.status, response.statusText);
 					return;
 				};
 				const data = await response.json()
 				console.log('vehicles: ', data);
-				setStore({starships: data.results})
+				setStore({ starships: data.results })
 			},
-			settingStarship: (starship) => {setStore({currentStarship: starship})},
+			settingStarship: (starship) => { setStore({ currentStarship: starship }) },
+
+			handleFavorites: () => {
+
+				return (
+					<h1></h1>
+				)
+			}
 		}
 	};
 };

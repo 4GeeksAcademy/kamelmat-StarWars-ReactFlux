@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
-import { Spinner } from "../component/Spinner.jsx"
+import { Spinner } from "../component/Spinner.jsx";
+import "../../styles/starships.css"
 
 
 export const CardSTS = () => {
@@ -29,22 +30,28 @@ export const CardSTS = () => {
     console.log("Funciona los Starships", store.currentStarship);
 
     return (
-        <div className="container text-danger">
+        <div className="container">
             <div className="row align-items-center">
                 <div className="col-md-3">
                     <img src={selectedStarship.imageUrl} alt={selectedStarship.imageUrl}
-                        onError={(e) => { e.target.src = 'https://starwars-visualguide.com/assets/img/placeholder.jpg'; }} className="img-fluid" />
+                        onError={(e) => { e.target.src = 'https://starwars-visualguide.com/assets/img/placeholder.jpg'; }} className="img-fluid custom-image" />
                 </div>
-                <div className="col-md-9">
-                    <h1 className="text-danger-light">{selectedStarship.name}</h1>
-                    {!starship? <Spinner /> :
-                    
-                    <ul className="text-light" >
-                        <li>Starship Class: {starship.starship_class}</li>
-                        <li>Crew: {starship.crew}</li>
-                        <li>Hyperdrive Rating: {starship.hyperdrive_rating}</li>
-                        <li>Passengers: {starship.passengers}</li>
-                    </ul>
+                <div className="col-md-8 col-lg-8 col-sm-6">
+                    <h2 className="text-danger-emphasis">{selectedStarship.name}</h2>
+                    {!starship ? <Spinner /> :
+                        <div className="starship-details-container">
+                            <ul className="text-primary-emphasis" >
+                                <li>Starship Class: {starship.starship_class}</li>
+                                <li>Crew: {starship.crew}</li>
+                                <li>Hyperdrive Rating: {starship.hyperdrive_rating}</li>
+                                <li>Model: {starship.model}</li>
+                                <li>Passengers: {starship.passengers}</li>
+                                <li>Manufacturer: {starship.manufacturer}</li>
+                                <li>Cost In Credits: {starship.cost_in_credits}</li>
+                                <li>Cargo Capacity: {starship.cargo_capacity}</li>
+                            </ul>
+                        </div>
+
                     }
                 </div>
             </div>

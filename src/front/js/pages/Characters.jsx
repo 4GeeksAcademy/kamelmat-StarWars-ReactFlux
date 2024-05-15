@@ -19,7 +19,7 @@ export const Characters = () => {
                     <div className="card bg-dark text-light space">
                         <img src={`https://starwars-visualguide.com/assets/img/characters/${index + 1}.jpg`} className="card-img-top image-fluid" alt="..."></img>
                         <div className="card-body">
-                            <h5 className="card-title fs-2">{person.name}</h5>							
+                            <h5 className="card-title text-danger-emphasis">{person.name}</h5>							
                             <div className="container d-flex justify-content-between">
                             <Link to="/cardppl" onClick={() => {handleLearnMore(person, `https://starwars-visualguide.com/assets/img/characters/${index + 1}.jpg`)}} className="btn btn-primary">Learn More</Link>
                                 <a href="#" className="btn btn-warning"><i className="fas fa-heart"></i></a>
