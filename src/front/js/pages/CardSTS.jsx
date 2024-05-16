@@ -40,7 +40,7 @@ export const CardSTS = () => {
                     <h2 className="text-danger-emphasis">{selectedStarship.name}</h2>
                     {!starship ? <Spinner /> :
                         <div className="starship-details-container">
-                            <ul className="text-primary-emphasis" >
+                            <ul className="text-dark" >
                                 <li>Starship Class: {starship.starship_class}</li>
                                 <li>Crew: {starship.crew}</li>
                                 <li>Hyperdrive Rating: {starship.hyperdrive_rating}</li>
@@ -50,6 +50,9 @@ export const CardSTS = () => {
                                 <li>Cost In Credits: {starship.cost_in_credits}</li>
                                 <li>Cargo Capacity: {starship.cargo_capacity}</li>
                             </ul>
+                            <Link to="/starships">
+                                <button type="button" class="btn btn-outline-primary">Return</button>
+                            </Link>
                         </div>
 
                     }

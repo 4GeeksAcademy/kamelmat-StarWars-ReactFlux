@@ -10,6 +10,11 @@ const handleLearnMore = (starship) => {
     actions.settingStarship({...starship, imageUrl: `https://starwars-visualguide.com/assets/img/starships/${starship.uid}.jpg` });
 }
 
+const handleFavorites = (starship) => {
+    console.log("Favorited: ", starship);
+    actions.handleAddFavorites(starship);
+}
+
     return(
         <div className="container-fluid text-center mt-5 bg-black">
             <h1 className="bg-black text-danger text-start">Starships</h1>
@@ -25,7 +30,9 @@ const handleLearnMore = (starship) => {
                                 <h5 className="card-title text-danger-emphasis">{starship.name}</h5>
                                 <div className="container d-flex justify-content-between">
                                 <Link to="/cardsts" onClick={() => {handleLearnMore(starship)}} className="btn btn-primary">Learn More</Link>
-                                    <a href="#" className="btn btn-warning"><i className="fas fa-heart"></i></a>
+                                <span onClick={()=> handleFavorites(starship)} className="btn btn-warning">
+                                        <i className="fas fa-heart"></i>
+                                    </span>
                                 </div>
                             </div>
 

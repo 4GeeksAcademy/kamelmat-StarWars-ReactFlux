@@ -1,0 +1,46 @@
+<div className="container">
+			<div className="row">
+				<div className="col">
+					<nav className="navbar navbar-black bg-black mb-3">
+						<div className="d-flex justify-content-between w-100">
+							<Link to="/">
+								<span className="mb-0 logo-container">
+									<img src={starWarsLogo} className="thumb" alt="Star Wars Logo" />
+								</span>
+							</Link>
+							<div className="navbar-nav d-flex">
+
+							<Link to="/characters">
+								<button type="button" className="btn btn-outline-secondary">Characters</button>
+							</Link>
+							<Link to="/planets">
+								<button type="button" className="btn btn-outline-secondary">Planets</button>
+							</Link>
+							<Link to="/starships">
+								<button type="button" className="btn btn-outline-secondary">Starships</button>
+							</Link>
+							<Link to="/contacts">
+								<button type="button" className="btn btn-outline-secondary">
+									<span>
+									<i className="fab fa-galactic-republic text-danger"></i>
+									</span>
+									Legion 501</button>
+							</Link>
+							<div className="col-2 ml-auto">
+								<select className="form-select bg-primary text-light" aria-label="Small select example">
+									<option defaultValue>Favorites</option>
+									{store.favorites.map((item, index) => 
+									<option value="1">{item}</option>
+									)}
+									
+								</select>
+							</div>
+							</div>
+						</div>
+					</nav>
+				</div>
+			</div>
+
+		</div>
+	);
+};

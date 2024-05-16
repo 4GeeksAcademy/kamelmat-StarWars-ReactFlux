@@ -10,6 +10,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			currentPlanet: null,
 			currentPerson: '',
 			currentStarship: null,
+			apiContact: 'https://playground.4geeks.com/contact/agendas/',
 			favorites: [],
 		},
 		actions: {
@@ -56,7 +57,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const data = await response.json()
 				console.log('Planets: ', data);
 				setStore({ planets: data });
-				
+
 			},
 			settingPlanet: (planet) => { setStore({ currentPlanet: planet }) },
 
@@ -90,14 +91,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			settingStarship: (starship) => { setStore({ currentStarship: starship }) },
 
-			handleFavorites: () => {
+			getContacts: async () => {
 
-				return (
-					<h1></h1>
-				)
+			},
+			handleAddFavorites: (item) => {
+				const store = getStore();
+				const favorites = store.favorites;
+				const isFavorite = favorites.some(favorite => favorite === item.name);
+				if (!isFavorite) {
+					setStore({ favorites: [...favorites, item.name] });
+				}
+			},
+
+			removeFavorite: (index) => {
+				const store = getStore();
+				const favorites = store.favorites;
+				const newFavorites = favorites.filter((_, i) => i !== index)
+				setStore({favorites: newFavorites})
+			},
+
+			clearFavorites: () => {
+				setStore({favorites: []})
 			}
+
 		}
-	};
+
+	}
 };
+
 
 export default getState;

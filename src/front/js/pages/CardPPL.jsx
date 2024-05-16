@@ -18,14 +18,18 @@ export const CardPPL = () => {
                             <img src={selectedPerson.imageUrl} alt={selectedPerson.imageUrl} className="img-fluid" />
                         </div>
                         <div className="col-md-9">
+                            
                             <h1 className="text-danger-emphasis">{selectedPerson.name}</h1>
-                            <ul className="text-light" >
+                            <ul className="text-dark" >
                                 <li>Height: {selectedPerson.height}</li>
                                 <li>Mass: {selectedPerson.mass}</li>
                                 <li>Hair Color: {selectedPerson.hair_color}</li>
                                 <li>Skin Color: {selectedPerson.skin_color}</li>
                                 <li>Eye Color: {selectedPerson.eye_color}</li>
                             </ul>
+                            <Link to="/characters">
+                                <button type="button" class="btn btn-outline-primary">Return</button>
+                            </Link>
 
                         </div>
                     </div>
@@ -33,29 +37,29 @@ export const CardPPL = () => {
                         <div className="col">
                             <h4 className="text-primary-emphasis">Films:</h4>
                             <ul className="film-list">
-                            {selectedPerson.films.map((film, index) => {
-                                const filmNumber = film.split('/').filter(Boolean).pop();
-                                const imageUrl = `https://starwars-visualguide.com/assets/img/films/${filmNumber}.jpg`;
-                                return (
-                                    <li className="text-secondary fs-6" key={index}>
-                                        <img src={imageUrl} alt={`Film ${filmNumber}`} />
-                                    </li>
-                                );
-                            })}
+                                {selectedPerson.films.map((film, index) => {
+                                    const filmNumber = film.split('/').filter(Boolean).pop();
+                                    const imageUrl = `https://starwars-visualguide.com/assets/img/films/${filmNumber}.jpg`;
+                                    return (
+                                        <li className="text-secondary fs-6" key={index}>
+                                            <img src={imageUrl} alt={`Film ${filmNumber}`} />
+                                        </li>
+                                    );
+                                })}
                             </ul>
                         </div>
                         <div className="col-md-6">
                             <h4 className="text-primary-emphasis">Starships:</h4>
                             <ul className="second-list">
-                            {selectedPerson.starships.map((starship, index) => {
-                                const starshipNumber = starship.split('/').filter(Boolean).pop();
-                                const imageUrl = `https://starwars-visualguide.com/assets/img/starships/${starshipNumber}.jpg`;
-                                return (
-                                    <li className="text-secondary fs-6" key={index}>
-                                        <img src={imageUrl} alt={`Starship ${starshipNumber}`} />
-                                    </li>
-                                );
-                            })}
+                                {selectedPerson.starships.map((starship, index) => {
+                                    const starshipNumber = starship.split('/').filter(Boolean).pop();
+                                    const imageUrl = `https://starwars-visualguide.com/assets/img/starships/${starshipNumber}.jpg`;
+                                    return (
+                                        <li className="text-secondary fs-6" key={index}>
+                                            <img src={imageUrl} alt={`Starship ${starshipNumber}`} />
+                                        </li>
+                                    );
+                                })}
                             </ul>
                         </div>
                     </div>

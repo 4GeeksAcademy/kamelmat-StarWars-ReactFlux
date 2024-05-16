@@ -16,12 +16,16 @@ export const Card = () => {
                 </div>
                 <div className="col-md-9">
                     <h1 className="text-danger-emphasis">{selectedPlanet.name}</h1>
-                    <ul className="text-primary-emphasis" >
+                    
+                    <ul className="text-dark" >
                         <li>Terrain:  {selectedPlanet.terrain}</li>
                         <li>Rotation Period:  {selectedPlanet.rotation_period}</li>
                         <li>Climate:  {selectedPlanet.climate}</li>
                         <li>Gravity:  {selectedPlanet.gravity}</li>
                     </ul>
+                    <Link to="/planets">
+                    <button type="button" class="btn btn-outline-primary">Return</button>
+                    </Link>
 
                 </div>
             </div>
