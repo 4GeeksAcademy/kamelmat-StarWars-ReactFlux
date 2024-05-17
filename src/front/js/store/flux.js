@@ -14,8 +14,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			agenda: 'spain',
 			contacts: null,
 			favorites: [],
+			currentRecruit: '',
+			
 		},
 		actions: {
+			//increment: () => {setStore({counter: getStore().counter + 1})},
+			// decrease: () => {setStore({counter: getStore().counter - 1})},
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
@@ -153,7 +157,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			clearFavorites: () => {
 				setStore({ favorites: [] })
-			}
+			},
+
+			setCurrentRecruit: (item) => {
+				console.log("Setting current recruit:", item);
+				setStore({ currentRecruit: item});
+			},
+			updateContact: async (dataToSend) => {
+                const { id, ...data } = dataToSend;
+                const uri = `${getStore().apiContact}agendas/${getStore().agenda}/contacts/${id}`;
+                const options = {
+                    method: 'PUT',
+                    headers: {
+                        'Content-type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                };
+                const response = await fetch(uri, options);
+                if (!response.ok) {
+                    console.log('Update Contact Error', response.status, response.statusText);
+                    return;
+                }
+                getActions().getContacts(); 
+            },
 		},
 
 	}

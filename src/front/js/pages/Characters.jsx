@@ -29,7 +29,7 @@ export const Characters = () => {
                                     <Link to="/cardppl" onClick={() => { handleLearnMore(person, `https://starwars-visualguide.com/assets/img/characters/${index + 1}.jpg`) }} className="btn btn-primary">
                                         Learn More
                                     </Link>
-                                    <span onClick={()=> handleFavorites(person)} className="btn btn-warning">
+                                    <span onClick={()=> handleFavorites(person)} className="btn btn-outline-warning">
                                         <i className="fas fa-heart"></i>
                                     </span>
                                 </div>

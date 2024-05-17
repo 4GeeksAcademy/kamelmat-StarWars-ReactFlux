@@ -14,6 +14,10 @@ export const CardPPL = () => {
     const handleImageError = (e) => {
         e.target.src = 'https://starwars-visualguide.com/assets/img/placeholder.jpg';
     };
+    const handleFavorites = (person) => {
+        console.log(person);
+        actions.handleAddFavorites(person);
+    }
 
     return (
         <div className="container text-danger">
@@ -24,27 +28,29 @@ export const CardPPL = () => {
                             <img src={selectedPerson.imageUrl} alt={selectedPerson.imageUrl} className="img-fluid" />
                         </div>
                         <div className="col-md-9">
-                            
+
                             <h1 className="text-danger-emphasis">{selectedPerson.name}</h1>
-                            <ul className="text-dark" >
-                                <li>Height: {selectedPerson.height}</li>
-                                <li>Mass: {selectedPerson.mass}</li>
-                                <li>Hair Color: {selectedPerson.hair_color}</li>
-                                <li>Skin Color: {selectedPerson.skin_color}</li>
-                                <li>Eye Color: {selectedPerson.eye_color}</li>
-                                <li>Gender: {selectedPerson.gender}</li>
-                                <li>Birth Year: {selectedPerson.birth_year}</li>
-                            </ul>
-                              <div className="film-list">
-                                <p>Birth Planet:</p>
-                               
-                                
-                                <img src={planetImageUrl} alt={`Planet ${planetNumber}`} className="img-fluid"  onError={handleImageError} />
-                               
+                            <div className="d-flex justify-content-between">
+                                <ul className="text-dark" >
+                                    <li>Height: {selectedPerson.height}</li>
+                                    <li>Mass: {selectedPerson.mass}</li>
+                                    <li>Hair Color: {selectedPerson.hair_color}</li>
+                                    <li>Skin Color: {selectedPerson.skin_color}</li>
+                                    <li>Eye Color: {selectedPerson.eye_color}</li>
+                                    <li>Gender: {selectedPerson.gender}</li>
+                                    <li>Birth Year: {selectedPerson.birth_year}</li>
+                                    <Link to="/characters">
+                                        <button type="button" className="btn btn-outline-primary">Return</button>
+                                    </Link>
+                                    <span onClick={() => handleFavorites(selectedPerson)} className="btn btn-outline-warning ms-2">
+                                        <i className="fas fa-heart"></i>
+                                    </span>
+                                </ul>
+                                <div className="film-list">
+                                    <p>Birth Planet:</p>
+                                    <img src={planetImageUrl} alt={`Planet ${planetNumber}`} className="img-fluid" onError={handleImageError} />
+                                </div>
                             </div>
-                            <Link to="/characters">
-                                <button type="button" className="btn btn-outline-primary">Return</button>
-                            </Link>
 
                         </div>
                     </div>
@@ -57,7 +63,7 @@ export const CardPPL = () => {
                                     const imageUrl = `https://starwars-visualguide.com/assets/img/films/${filmNumber}.jpg`;
                                     return (
                                         <li className="text-secondary fs-6" key={index}>
-                                            <img src={imageUrl} alt={`Film ${filmNumber}`}  onError={handleImageError} />
+                                            <img src={imageUrl} alt={`Film ${filmNumber}`} onError={handleImageError} />
                                         </li>
                                     );
                                 })}
@@ -71,7 +77,7 @@ export const CardPPL = () => {
                                     const imageUrl = `https://starwars-visualguide.com/assets/img/starships/${starshipNumber}.jpg`;
                                     return (
                                         <li className="text-secondary fs-6" key={index}>
-                                            <img src={imageUrl} alt={`Starship ${starshipNumber}`}   onError={handleImageError} />
+                                            <img src={imageUrl} alt={`Starship ${starshipNumber}`} onError={handleImageError} />
                                         </li>
                                     );
                                 })}

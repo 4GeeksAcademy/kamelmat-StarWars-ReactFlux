@@ -30,7 +30,7 @@ const handleFavorites = (starship) => {
                                 <h5 className="card-title text-danger-emphasis">{starship.name}</h5>
                                 <div className="container d-flex justify-content-between">
                                 <Link to="/cardsts" onClick={() => {handleLearnMore(starship)}} className="btn btn-primary">Learn More</Link>
-                                <span onClick={()=> handleFavorites(starship)} className="btn btn-warning">
+                                <span onClick={()=> handleFavorites(starship)} className="btn btn-outline-warning">
                                         <i className="fas fa-heart"></i>
                                     </span>
                                 </div>

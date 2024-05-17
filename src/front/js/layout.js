@@ -14,10 +14,9 @@ import { CardPPL } from "./pages/CardPPL.jsx";
 import { Starships} from "./pages/Starships.jsx"
 import { CardSTS } from "./pages/CardSTS.jsx";
 import { Contacts } from "./pages/Contacts.jsx";
-//import { AddContact } from "./pages/AddContact.jsx";
 import { AddLegion } from "./pages/AddLegion.jsx"
 import injectContext from "./store/appContext";
-
+import { EditLegion } from "./pages/EditLegion.jsx"
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 
@@ -40,13 +39,14 @@ const Layout = () => {
                         <Route path="/demo" element={<Demo />} />
                         <Route path="/planets" element={<Planets />} />
                         <Route path="/contacts" element={<Contacts />} />
-                       {/*  <Route path="/add-contact" element={<AddContact />} /> */}
                         <Route path="/addlegion" element={<AddLegion />}/> 
+                        <Route path="editlegion" element={<EditLegion />} />
                         <Route path="/card" element={<Card />} />
                         <Route path="/cardppl" element={<CardPPL />} />
                         <Route path="/characters" element={<Characters />} />
                         <Route path="/starships" element={<Starships />} />
                         <Route path="/cardsts" element={<CardSTS />} />
+
                         <Route element={<h1>Not found!</h1>} path="*" />
                     </Routes>
                     <Footer />

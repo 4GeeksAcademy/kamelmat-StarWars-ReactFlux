@@ -25,7 +25,12 @@ export const CardSTS = () => {
     }
     useEffect(() => {
         getCurrentStarship();
-    }, [])
+    }, []);
+
+    const handleFavorites = (person) => {
+        console.log(person);
+        actions.handleAddFavorites(person);
+    }
 
     console.log("Funciona los Starships", store.currentStarship);
 
@@ -53,6 +58,9 @@ export const CardSTS = () => {
                             <Link to="/starships">
                                 <button type="button" class="btn btn-outline-primary">Return</button>
                             </Link>
+                            <span onClick={() => handleFavorites(starship)} className="btn btn-outline-warning ms-2">
+                                <i className="fas fa-heart"></i>
+                            </span>
                         </div>
 
                     }

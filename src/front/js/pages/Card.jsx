@@ -7,6 +7,11 @@ export const Card = () => {
     const { store, actions } = useContext(Context)
     const selectedPlanet = store.currentPlanet
     console.log("Funciona");
+
+    const handleFavorites = (planet) => {
+        console.log("Favorited: ", planet);
+        actions.handleAddFavorites(planet);
+    }
     return (
         <div className="container text-danger">
             <div className="row align-items-center">
@@ -16,7 +21,7 @@ export const Card = () => {
                 </div>
                 <div className="col-md-9">
                     <h1 className="text-danger-emphasis">{selectedPlanet.name}</h1>
-                    
+
                     <ul className="text-dark" >
                         <li>Terrain:  {selectedPlanet.terrain}</li>
                         <li>Rotation Period:  {selectedPlanet.rotation_period}</li>
@@ -24,8 +29,11 @@ export const Card = () => {
                         <li>Gravity:  {selectedPlanet.gravity}</li>
                     </ul>
                     <Link to="/planets">
-                    <button type="button" class="btn btn-outline-primary">Return</button>
+                        <button type="button" class="btn btn-outline-primary">Return</button>
                     </Link>
+                    <span onClick={() => handleFavorites(selectedPlanet)} className="btn btn-outline-warning">
+                        <i className="fas fa-heart fa-flip"></i>
+                    </span>
 
                 </div>
             </div>
@@ -35,11 +43,11 @@ export const Card = () => {
                     <ul className="film-list">
                         {selectedPlanet.residents.map((resident, index) => {
                             // Obtener el número al final de la URL del residente
-                            const residentNumber = resident.split('/').filter(Boolean).pop();                            
+                            const residentNumber = resident.split('/').filter(Boolean).pop();
                             const imageUrl = `https://starwars-visualguide.com/assets/img/characters/${residentNumber}.jpg`;
                             return (
                                 <li className="text-secondary fs-6" key={index}>
-                                 <img src={imageUrl} alt={`Resident ${residentNumber}`} />
+                                    <img src={imageUrl} alt={`Resident ${residentNumber}`} />
                                 </li>
                             );
                         })}
