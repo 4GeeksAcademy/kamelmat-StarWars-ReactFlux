@@ -1,46 +1,36 @@
-<div className="container">
-			<div className="row">
-				<div className="col">
-					<nav className="navbar navbar-black bg-black mb-3">
-						<div className="d-flex justify-content-between w-100">
-							<Link to="/">
-								<span className="mb-0 logo-container">
-									<img src={starWarsLogo} className="thumb" alt="Star Wars Logo" />
-								</span>
-							</Link>
-							<div className="navbar-nav d-flex">
+import React, { useContext, useState } from "react";
+import { Context } from "../store/appContext";
+import { useNavigate } from "react-router";
 
-							<Link to="/characters">
-								<button type="button" className="btn btn-outline-secondary">Characters</button>
-							</Link>
-							<Link to="/planets">
-								<button type="button" className="btn btn-outline-secondary">Planets</button>
-							</Link>
-							<Link to="/starships">
-								<button type="button" className="btn btn-outline-secondary">Starships</button>
-							</Link>
-							<Link to="/contacts">
-								<button type="button" className="btn btn-outline-secondary">
-									<span>
-									<i className="fab fa-galactic-republic text-danger"></i>
-									</span>
-									Legion 501</button>
-							</Link>
-							<div className="col-2 ml-auto">
-								<select className="form-select bg-primary text-light" aria-label="Small select example">
-									<option defaultValue>Favorites</option>
-									{store.favorites.map((item, index) => 
-									<option value="1">{item}</option>
-									)}
-									
-								</select>
-							</div>
-							</div>
-						</div>
-					</nav>
-				</div>
-			</div>
+export const AddLegion = () => {
+    const { actions } = useContext(Context)
 
-		</div>
-	);
-};
+    const navigate = useNavigate();
+    return(
+        <h1>
+            Hello
+        </h1>
+       /*  <form>
+  <fieldset>
+    <legend>Legend</legend>
+    <div class="row">
+      <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+      <div class="col-sm-10">
+        <input type="text" readonly="" class="form-control-plaintext" id="staticEmail" value="email@example.com"/>
+      </div>
+    </div>
+    <div>
+      <label for="exampleInputEmail1" class="form-label mt-4">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div>
+      <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" autocomplete="off"/>
+    </div>
+    
+        <button type="submit" class="btn btn-primary">Submit</button>
+  </fieldset>
+</form> */
+    )
+}

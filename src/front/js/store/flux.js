@@ -10,7 +10,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			currentPlanet: null,
 			currentPerson: '',
 			currentStarship: null,
-			apiContact: 'https://playground.4geeks.com/contact/agendas/',
+			apiContact: 'https://playground.4geeks.com/contact/',
+			agenda: 'spain',
+			contacts: null,
 			favorites: [],
 		},
 		actions: {
@@ -92,7 +94,46 @@ const getState = ({ getStore, getActions, setStore }) => {
 			settingStarship: (starship) => { setStore({ currentStarship: starship }) },
 
 			getContacts: async () => {
+				const uri = getStore().apiContact + 'agendas/' + getStore().agenda
+				const response = await fetch(uri);
+				if (!response.ok) {
+					console.log('Error on Agenda', response.status, response.statusText);
+					return
+				}
+				const data = await response.json();
+				setStore({ contacts: data.contacts });
+				console.log('Recruits on Agenda', data.contacts);
 
+			},
+			addContact: async (dataToSend) => {
+				const uri = `${getStore().apiContact}agendas/${getStore().agenda}/contacts`
+				const options = {
+					method: 'POST',
+					headers: {
+						'Content-type': 'application/json'
+					},
+					body: JSON.stringify(dataToSend)
+				}
+				const response = await fetch(uri, options);
+				if (!response.ok) {
+					console.log('Add Contact Error', response.status, response.statusText);
+					return
+				}
+				// const data = await response.json();
+				getActions().getContacts();
+			},
+			removeContact: async (contactId) => {
+				const uri = `${getStore().apiContact}agendas/${getStore().agenda}/contacts/${contactId}`
+				const options = {
+					method: 'DELETE',
+
+				}
+				const response = await fetch(uri, options);
+				if (!response.ok) {
+					console.log('error', response.status, response.statusText);
+					return
+				}
+				getActions().getContacts();
 			},
 			handleAddFavorites: (item) => {
 				const store = getStore();
@@ -107,17 +148,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 				const favorites = store.favorites;
 				const newFavorites = favorites.filter((_, i) => i !== index)
-				setStore({favorites: newFavorites})
+				setStore({ favorites: newFavorites })
 			},
 
 			clearFavorites: () => {
-				setStore({favorites: []})
+				setStore({ favorites: [] })
 			}
-
-		}
+		},
 
 	}
-};
+
+}
+
 
 
 export default getState;

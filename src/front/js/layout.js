@@ -14,10 +14,13 @@ import { CardPPL } from "./pages/CardPPL.jsx";
 import { Starships} from "./pages/Starships.jsx"
 import { CardSTS } from "./pages/CardSTS.jsx";
 import { Contacts } from "./pages/Contacts.jsx";
+//import { AddContact } from "./pages/AddContact.jsx";
+import { AddLegion } from "./pages/AddLegion.jsx"
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+
 
 //create your first component
 const Layout = () => {
@@ -37,6 +40,8 @@ const Layout = () => {
                         <Route path="/demo" element={<Demo />} />
                         <Route path="/planets" element={<Planets />} />
                         <Route path="/contacts" element={<Contacts />} />
+                       {/*  <Route path="/add-contact" element={<AddContact />} /> */}
+                        <Route path="/addlegion" element={<AddLegion />}/> 
                         <Route path="/card" element={<Card />} />
                         <Route path="/cardppl" element={<CardPPL />} />
                         <Route path="/characters" element={<Characters />} />

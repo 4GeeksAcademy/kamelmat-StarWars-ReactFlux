@@ -9,6 +9,12 @@ export const CardPPL = () => {
     const selectedPerson = store.currentPerson
 
     console.log('Esta Info tiene: ', store.currentPerson);
+    const planetNumber = selectedPerson.homeworld.split('/').filter(Boolean).pop();
+    const planetImageUrl = `https://starwars-visualguide.com/assets/img/planets/${planetNumber}.jpg`;
+    const handleImageError = (e) => {
+        e.target.src = 'https://starwars-visualguide.com/assets/img/placeholder.jpg';
+    };
+
     return (
         <div className="container text-danger">
             {!store.currentPerson ? 'This is not the character you are looking for' :
@@ -26,9 +32,18 @@ export const CardPPL = () => {
                                 <li>Hair Color: {selectedPerson.hair_color}</li>
                                 <li>Skin Color: {selectedPerson.skin_color}</li>
                                 <li>Eye Color: {selectedPerson.eye_color}</li>
+                                <li>Gender: {selectedPerson.gender}</li>
+                                <li>Birth Year: {selectedPerson.birth_year}</li>
                             </ul>
+                              <div className="film-list">
+                                <p>Birth Planet:</p>
+                               
+                                
+                                <img src={planetImageUrl} alt={`Planet ${planetNumber}`} className="img-fluid"  onError={handleImageError} />
+                               
+                            </div>
                             <Link to="/characters">
-                                <button type="button" class="btn btn-outline-primary">Return</button>
+                                <button type="button" className="btn btn-outline-primary">Return</button>
                             </Link>
 
                         </div>
@@ -42,7 +57,7 @@ export const CardPPL = () => {
                                     const imageUrl = `https://starwars-visualguide.com/assets/img/films/${filmNumber}.jpg`;
                                     return (
                                         <li className="text-secondary fs-6" key={index}>
-                                            <img src={imageUrl} alt={`Film ${filmNumber}`} />
+                                            <img src={imageUrl} alt={`Film ${filmNumber}`}  onError={handleImageError} />
                                         </li>
                                     );
                                 })}
@@ -56,7 +71,7 @@ export const CardPPL = () => {
                                     const imageUrl = `https://starwars-visualguide.com/assets/img/starships/${starshipNumber}.jpg`;
                                     return (
                                         <li className="text-secondary fs-6" key={index}>
-                                            <img src={imageUrl} alt={`Starship ${starshipNumber}`} />
+                                            <img src={imageUrl} alt={`Starship ${starshipNumber}`}   onError={handleImageError} />
                                         </li>
                                     );
                                 })}
