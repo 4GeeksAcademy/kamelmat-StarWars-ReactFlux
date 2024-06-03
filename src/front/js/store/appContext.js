@@ -22,7 +22,7 @@ const injectContext = PassedComponent => {
 		);
 
 		useEffect(() => {
-			
+			state.actions.createAgenda();
 			state.actions.getMessage();
 			state.actions.getPlanets();
 			state.actions.getPersons();

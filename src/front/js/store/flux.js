@@ -15,7 +15,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			contacts: null,
 			favorites: [],
 			currentRecruit: '',
-			
+
 		},
 		actions: {
 			//increment: () => {setStore({counter: getStore().counter + 1})},
@@ -51,6 +51,44 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//reset the global store
 				setStore({ demo: demo });
 			},
+
+			createAgenda: async () => {
+				const store = getStore();
+				const checkUri = "https://playground.4geeks.com/contact/agendas/spain";
+
+				try {
+					const checkResponse = await fetch(checkUri, { method: 'GET' });
+					if (checkResponse.status === 404) {
+						console.log('Agenda "spain" does not exist, creating...');
+
+						const createUri = "https://playground.4geeks.com/contact/agendas/spain";
+						const options = {
+							method: 'POST',
+							headers: { 'Content-Type': 'application/json' },
+							body: JSON.stringify(dataToSend)
+						};
+
+						const createResponse = await fetch(createUri, options);
+						if (!createResponse.ok) {
+							console.log('Add Agenda Error', createResponse.status, createResponse.statusText);
+							return false;
+						}
+
+						console.log(`Agenda "spain" created successfully`);
+						return true;
+					} else if (checkResponse.ok) {
+						console.log('Agenda "spain" already exists');
+						return true;
+					} else {
+						console.log('Error checking agenda existence', checkResponse.status, checkResponse.statusText);
+						return false;
+					}
+				} catch (error) {
+					console.log('Network or other error', error);
+					return false;
+				}
+			},
+
 			getPlanets: async () => {
 				const response = await fetch('https://swapi.dev/api/planets')
 
@@ -161,25 +199,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			setCurrentRecruit: (item) => {
 				console.log("Setting current recruit:", item);
-				setStore({ currentRecruit: item});
+				setStore({ currentRecruit: item });
 			},
 			updateContact: async (dataToSend) => {
-                const { id, ...data } = dataToSend;
-                const uri = `${getStore().apiContact}agendas/${getStore().agenda}/contacts/${id}`;
-                const options = {
-                    method: 'PUT',
-                    headers: {
-                        'Content-type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                };
-                const response = await fetch(uri, options);
-                if (!response.ok) {
-                    console.log('Update Contact Error', response.status, response.statusText);
-                    return;
-                }
-                getActions().getContacts(); 
-            },
+				const { id, ...data } = dataToSend;
+				const uri = `${getStore().apiContact}agendas/${getStore().agenda}/contacts/${id}`;
+				const options = {
+					method: 'PUT',
+					headers: {
+						'Content-type': 'application/json'
+					},
+					body: JSON.stringify(data)
+				};
+				const response = await fetch(uri, options);
+				if (!response.ok) {
+					console.log('Update Contact Error', response.status, response.statusText);
+					return;
+				}
+				getActions().getContacts();
+			},
+
 		},
 
 	}
