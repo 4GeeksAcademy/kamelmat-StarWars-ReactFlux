@@ -11,6 +11,12 @@ export const Navbar = () => {
 		actions.clearFavorites()
 	}
 
+	const logout = () => {
+		console.log("estoy en logout");
+		actions.setIsLogin(false)
+		localStorage.removeItem("token")
+	}
+
 	return (
 		<nav className="navbar navbar-expand-sm bg-dark" data-bs-theme="dark">
 			<div className="container-fluid d-flex align-items-center justify-content-between">
@@ -28,6 +34,25 @@ export const Navbar = () => {
 					</button>
 					<div className="collapse navbar-collapse justify-content-end" id="navbarColor02">
 						<ul className="navbar-nav me-auto">
+							<li className="nav-item">
+								<Link to="/signup">
+									<button type="button" className="btn btn-outline-danger">Sign Up</button>
+								</Link>
+							</li>
+							<li className="nav-item">
+								{store.isLogin ? 
+								<Link to="/">
+									<button type="button" onClick={logout} className="btn btn-outline-info">Logout</button>
+								</Link>
+								: 
+								<Link to="/login">
+									<button type="button" className="btn btn-outline-success">Login</button>
+								</Link>
+								}
+
+								
+								
+							</li>											
 							<li className="nav-item">
 								<Link to="/characters">
 									<button type="button" className="btn btn-outline-secondary">Characters</button>

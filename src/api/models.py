@@ -9,10 +9,9 @@ class Users(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
-    is_admin = db.Column(db.Boolean(), unique=False, nullable=True)
-    first_name = db.Column(db.String(), unique=False, nullable=False)
-    last_name = db.Column(db.String(), unique=False, nullable=False)
-
+    is_admin = db.Column(db.Boolean(), unique=False, nullable=False)
+    first_name = db.Column(db.String(), unique=False, nullable=True)
+    last_name = db.Column(db.String(), unique=False, nullable=True)
 
     def __repr__(self):
         return f'<User: {self.email} - {self.id}>'
@@ -24,19 +23,18 @@ class Users(db.Model):
                 'is_active': self.is_active,
                 'is_admin': self.is_admin,
                 'first_name': self.first_name,
-                'last_name': self.first_name
-                }
+                'last_name': self.first_name}
+
 
 class Posts(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     title = db.Column(db.String(), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    user_to = db.relationship('Users', foreign_keys=[user_id])
     description = db.Column(db.String(), nullable=True)
     body = db.Column(db.String(), nullable=True)
     date_publication = db.Column(db.Date(), nullable=True)
     image_url = db.Column(db.String(), nullable=True)
-
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user_to = db.relationship('Users', foreign_keys=[user_id])
 
     def __repr__(self):
         return f'<Post: {self.title}>'
@@ -48,8 +46,8 @@ class Posts(db.Model):
                 "title": self.title,
                 'user_id': self.user_id,
                 'description': self.description,
-                'body': self.body
-                }
+                'body': self.body}
+
 
 class Comments(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
@@ -61,15 +59,15 @@ class Comments(db.Model):
     post_to = db.relationship('Posts', foreign_keys=[post_id])
 
     def __repr__(self):
-            return f'<Comments: {self.title}>'
+            return f'<Comments: {self.id}>'
 
     def serialize(self):
-    # Do not serialize the password, its a security breach
         return {"comment_id": self.id,
                 'body': self.body,
                 'date_publication': self.date_publication, 
                 'user_id': self.user_id,
-                }
+                'post_id': self.post_id}
+
 
 class Characters(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
@@ -79,15 +77,15 @@ class Characters(db.Model):
     home_world_to = db.relationship('Planets', foreign_keys=[home_world_id])
 
     def __repr__(self):
-        return f'<Characters: {self.title}>'
+        return f'<Characters: {self.name}>'
 
-    def serialize(self):
-    # Do not serialize the password, its a security breach
+    def serialize(self):   
         return {"character_id": self.id,
                 'name': self.name,
                 'description': self.description, 
                 'home_worl_id': self.home_worl_id,
                 }
+
 
 class FavoriteCharacters(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
@@ -106,7 +104,7 @@ class Planets(db.Model):
     gravity = db.Column(db.String(), nullable=True)
     
     def __repr__(self):
-        return f'<Planets: {self.title}>'
+        return f'<Planets: {self.name}>'
 
     def serialize(self):
     # Do not serialize the password, its a security breach
@@ -131,7 +129,7 @@ class Starships(db.Model):
     cargo_capacity = db.Column(db.String(), nullable=True)
 
     def __repr__(self):
-        return f'<Planets: {self.title}>'
+        return f'<Planets: {self.name}>'
 
     def serialize(self):
     # Do not serialize the password, its a security breach
@@ -156,8 +154,7 @@ class Followers(db.Model):
     def __repr__(self):
         return f'<Followers: {self.followers}>'
 
-    def serialize(self):
-    # Do not serialize the password, its a security breach
+    def serialize(self):    
         return {'followed_by_id': self.followed_by_id,
-                'you_follow_id': self.you_follow_id,
-                } 
+                'you_follow_id': self.you_follow_id} 
+                

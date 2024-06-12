@@ -15,6 +15,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			contacts: null,
 			favorites: [],
 			currentRecruit: '',
+			isLogin: false
 
 		},
 		actions: {
@@ -218,6 +219,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				getActions().getContacts();
 			},
+
+			setIsLogin: (login) => {setStore({ isLogin: login})}
 
 		},
 

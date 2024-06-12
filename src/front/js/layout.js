@@ -19,6 +19,9 @@ import injectContext from "./store/appContext";
 import { EditLegion } from "./pages/EditLegion.jsx"
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import { Login } from "./pages/Login.jsx";
+import { SignUp } from "./pages/SignUp.jsx";
+import { Dashboard } from "./pages/Dashboard.jsx";
 
 
 //create your first component
@@ -30,7 +33,7 @@ const Layout = () => {
     if (!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL />;
 
     return (
-        <div>
+        <div className="d-flex flex-column min-vh-100">
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
                     <Navbar />
@@ -46,7 +49,10 @@ const Layout = () => {
                         <Route path="/characters" element={<Characters />} />
                         <Route path="/starships" element={<Starships />} />
                         <Route path="/cardsts" element={<CardSTS />} />
-
+                        <Route path="/signup" element={<SignUp />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/dashboard" element={<Dashboard />} />                   
+                 
                         <Route element={<h1>Not found!</h1>} path="*" />
                     </Routes>
                     <Footer />
