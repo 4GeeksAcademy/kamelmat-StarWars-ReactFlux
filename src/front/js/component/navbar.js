@@ -16,6 +16,9 @@ export const Navbar = () => {
 		actions.setIsLogin(false)
 		localStorage.removeItem("token")
 	}
+	const profile = () => {
+		actions.profile()
+	}
 
 	return (
 		<nav className="navbar navbar-expand-sm bg-dark" data-bs-theme="dark">
@@ -40,19 +43,24 @@ export const Navbar = () => {
 								</Link>
 							</li>
 							<li className="nav-item">
-								{store.isLogin ? 
-								<Link to="/">
-									<button type="button" onClick={logout} className="btn btn-outline-info">Logout</button>
-								</Link>
-								: 
-								<Link to="/login">
-									<button type="button" className="btn btn-outline-success">Login</button>
-								</Link>
+								{store.isLogin ?
+									<>
+										<Link to="/">
+											<button type="button" onClick={logout} className="btn btn-outline-info">Logout</button>
+										</Link>
+										<Link to="/">
+											<button type="button" onClick={Profile} className="btn btn-outline-info">Profile</button>
+										</Link>
+									</>
+									:
+									<Link to="/login">
+										<button type="button" className="btn btn-outline-success">Login</button>
+									</Link>
 								}
 
-								
-								
-							</li>											
+
+
+							</li>
 							<li className="nav-item">
 								<Link to="/characters">
 									<button type="button" className="btn btn-outline-secondary">Characters</button>

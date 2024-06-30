@@ -220,7 +220,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 				getActions().getContacts();
 			},
 
-			setIsLogin: (login) => {setStore({ isLogin: login})}
+			setIsLogin: (login) => {setStore({ isLogin: login})},
+
+			profile: async () => {
+				const token = localStorage.getItem('token')
+				const url = `${process.env.BACKEND_URL}/api/profile`;
+				const options = {
+					method: "GET",
+					headers:{ 
+						'Content-type': 'application/json',
+						'Authorization': `bearer ${token}`
+					}
+				}
+				const response = await fetch(url, options)
+				if (!response.ok) {
+					console.log("error", response.status, response.statusText);
+					return
+				}
+				const data = await response.json()
+				console.log(data);
+
+			}
 
 		},
 
