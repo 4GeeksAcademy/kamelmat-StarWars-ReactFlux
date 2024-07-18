@@ -66,7 +66,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						const options = {
 							method: 'POST',
 							headers: { 'Content-Type': 'application/json' },
-							body: JSON.stringify(dataToSend)
+							body: JSON.stringify({})
 						};
 
 						const createResponse = await fetch(createUri, options);
@@ -76,6 +76,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 
 						console.log(`Agenda "spain" created successfully`);
+						setStore({contacts: []})
 						return true;
 					} else if (checkResponse.ok) {
 						console.log('Agenda "spain" already exists');
